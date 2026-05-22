@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: rgb(12, 15, 26);
+            border: 1px solid rgb(26, 31, 46);
+            color: white;
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+            text-shadow: rgba(0, 245, 160, 0.533) 0px 0px 24px;
+        }
+        p{
+            display: flex;
+            justify-content: center;
+            text-shadow: rgba(0, 245, 160, 0.533) 0px 0px 24px;
+        }
+        .js-form{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            text-shadow: rgba(0, 245, 160, 0.533) 0px 0px 24px;
+        }
+        .list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-shadow: rgba(0, 245, 160, 0.533) 0px 0px 24px;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+            background-color: rgb(0, 245, 160);
+            text-shadow: rgba(0, 245, 160, 0.533) 0px 0px 24px;
+            border-radius: 20px;
+            border: none;
+            color: white;
+        }
+        .js-input{
+            border-radius: 20px;
+            border: none;
+            text-shadow: rgba(0, 245, 160, 0.533) 0px 0px 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Son topish o'yini</h1>
+    <p>0 - 100 gacha son kiriting</p>
+    <p class="heart">heart : 7</p>
+
+    <form action="" class="js-form">
+        <input type="text" class="js-input">
+        <button type="submit">Submit</button>
+    </form>
+
+    <ul class="list"></ul>
+
+    <script>
+        const form = document.querySelector(".js-form")
+        const input = document.querySelector(".js-input")
+        const list = document.querySelector(".list")
+
+        let random = Math.floor(Math.random() * 100 + 1)
+        console.log(random)
+
+        let heart = 7
+
+        const heartCounter = document.querySelector(".heart")
+
+        form.onsubmit = (evt) => {
+            evt.preventDefault()
+
+            if (random != input.value) {
+                heart--
+            }
+
+            if (heart <= 0) {
+                return alert(`joningiz tugadi ${heart}`)
+            }
+
+            heartCounter.innerHTML = "heart : " + heart
+
+            let li = document.createElement("li")
+            li.innerHTML = input.value
+
+            if (random > input.value) {
+                li.innerHTML += " katta"
+            }
+
+            if (random < input.value) {
+                li.innerHTML += " kichik"
+            }
+
+            if (random == input.value) {
+                return alert("topdingiz")
+            }
+
+            list.appendChild(li)
+
+            form.reset()
+        }
+    </script>
+
+</body>
+</html>
